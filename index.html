@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Choose a Gift 💝</title>
+
+  <style>
+    :root{
+      --bg1:#fff7f3;
+      --bg2:#fffdfc;
+      --brown:#3c2a21;
+      --btn:#2b1c16;
+      --btnHover:#1d130f;
+    }
+
+    *{box-sizing:border-box; margin:0; padding:0;}
+    body{
+      font-family: "Georgia", serif;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+      overflow:hidden;
+      color:var(--brown);
+    }
+
+    /* main container */
+    .wrap{
+      width:min(900px, 92vw);
+      text-align:center;
+      padding:40px 15px;
+    }
+
+    /* top cute bear */
+    .topBear{
+      width:90px;
+      margin:0 auto 10px;
+      user-select:none;
+    }
+
+    h1{
+      font-size:34px;
+      font-weight:700;
+      margin-bottom:25px;
+    }
+
+    /* gift row */
+    .gifts{
+      display:flex;
+      justify-content:center;
+      gap:35px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .gift{
+      width:120px;
+      cursor:pointer;
+      transition: transform .15s ease;
+      user-select:none;
+    }
+    .gift:hover{ transform: translateY(-5px) scale(1.03); }
+
+    /* page switching */
+    .page{ display:none; }
+    .page.active{ display:block; }
+
+    /* back button */
+    .btn{
+      margin-top:20px;
+      background:var(--btn);
+      color:white;
+      border:none;
+      padding:10px 20px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:14px;
+      box-shadow:0 8px 20px rgba(0,0,0,.08);
+      transition:.2s;
+    }
+    .btn:hover{ background:var(--btnHover); transform:translateY(-1px); }
+
+    /* gift content */
+    .giftContent{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      margin-top:20px;
+    }
+
+    /* Flowers + cupcake */
+    .giftRow{
+      display:flex;
+      gap:40px;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .giftRow img{
+      width:170px;
+      user-select:none;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,.12));
+    }
+    .subtitle{
+      font-size:22px;
+      margin-top:5px;
+    }
+
+    /* message card */
+    .msgCard{
+      width:min(720px, 95vw);
+      background:#2b1a14;
+      color:#f6efe8;
+      border-radius:14px;
+      padding:22px 22px;
+      line-height:1.5;
+      box-shadow:0 15px 35px rgba(0,0,0,.15);
+      position:relative;
+    }
+
+    .msgCard:before{
+      content:"💋";
+      position:absolute;
+      left:-20px;
+      top:40%;
+      font-size:30px;
+      opacity:.9;
+    }
+    .msgCard:after{
+      content:"🌸";
+      position:absolute;
+      right:-20px;
+      bottom:15px;
+      font-size:30px;
+      opacity:.95;
+    }
+
+    /* music page */
+    .musicArea{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:35px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .chibi{
+      width:120px;
+      user-select:none;
+    }
+
+    .playerCard{
+      width:280px;
+      background:#f7f2ea;
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 20px 40px rgba(0,0,0,.12);
+      position:relative;
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .playerCard .cover{
+      width:100%;
+      border-radius:14px;
+      overflow:hidden;
+      margin-bottom:12px;
+      box-shadow:0 10px 25px rgba(0,0,0,.12);
+    }
+    .playerCard .cover img{
+      width:100%;
+      display:block;
+    }
+
+    .trackName{
+      font-family: Arial, sans-serif;
+      letter-spacing:.15em;
+      font-size:12px;
+      opacity:.85;
+      margin-bottom:10px;
+    }
+
+    audio{
+      width:100%;
+    }
+
+    /* little floating hearts */
+    .heart{
+      position:absolute;
+      width:14px;
+      height:14px;
+      background:pink;
+      transform: rotate(45deg);
+      opacity:.55;
+      animation: floatUp 6s linear infinite;
+      border-radius:2px;
+    }
+    .heart:before,.heart:after{
+      content:"";
+      position:absolute;
+      width:14px;
+      height:14px;
+      background:pink;
+      border-radius:50%;
+    }
+    .heart:before{ left:-7px; top:0; }
+    .heart:after{ top:-7px; left:0; }
+
+    @keyframes floatUp{
+      0%{ transform:translateY(0) rotate(45deg); opacity:.0; }
+      10%{opacity:.55;}
+      100%{ transform:translateY(-110vh) rotate(45deg); opacity:0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- floating hearts -->
+  <script>
+    for(let i=0;i<18;i++){
+      const h=document.createElement("div");
+      h.className="heart";
+      h.style.left=Math.random()*100+"vw";
+      h.style.animationDelay=(Math.random()*6)+"s";
+      h.style.opacity=(0.2+Math.random()*0.5);
+      h.style.transform="rotate(45deg) scale("+(0.6+Math.random()*1.2)+")";
+      document.body.appendChild(h);
+    }
+  </script>
+
+  <div class="wrap">
+
+    <!-- HOME -->
+    <div id="home" class="page active">
+      <!-- cute bear (simple cartoon) -->
+      <img class="topBear" alt="cute" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Crect width='140' height='140' fill='none'/%3E%3Cellipse cx='70' cy='75' rx='45' ry='35' fill='%23fff' stroke='%23c9b7aa' stroke-width='3'/%3E%3Cellipse cx='48' cy='55' rx='14' ry='14' fill='%23fff' stroke='%23c9b7aa' stroke-width='3'/%3E%3Cellipse cx='92' cy='55' rx='14' ry='14' fill='%23fff' stroke='%23c9b7aa' stroke-width='3'/%3E%3Cellipse cx='48' cy='55' rx='6' ry='6' fill='%23ffb6c1'/%3E%3Cellipse cx='92' cy='55' rx='6' ry='6' fill='%23ffb6c1'/%3E%3Ccircle cx='60' cy='75' r='4' fill='%233c2a21'/%3E%3Ccircle cx='80' cy='75' r='4' fill='%233c2a21'/%3E%3Cpath d='M66 85 Q70 88 74 85' stroke='%233c2a21' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+
+      <h1>Choose a Gift!</h1>
+
+      <div class="gifts">
+        <img class="gift" onclick="openPage('gift1')" alt="gift" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Crect width='220' height='220' fill='none'/%3E%3Crect x='40' y='80' width='140' height='110' rx='14' fill='%23ff8aa0'/%3E%3Crect x='40' y='80' width='140' height='55' rx='14' fill='%23ffb3bf'/%3E%3Crect x='102' y='80' width='16' height='110' fill='%23e34d6d'/%3E%3Crect x='40' y='125' width='140' height='16' fill='%23e34d6d'/%3E%3Cpath d='M110 45 C80 35 70 60 95 75 C105 85 110 90 110 90 C110 90 115 85 125 75 C150 60 140 35 110 45Z' fill='%23ff5c7b'/%3E%3Cpath d='M110 45 C140 35 150 60 125 75' fill='none' stroke='%23d6405d' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M110 45 C80 35 70 60 95 75' fill='none' stroke='%23d6405d' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E"/>
+
+        <img class="gift" onclick="openPage('gift2')" alt="gift" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Crect width='220' height='220' fill='none'/%3E%3Crect x='40' y='80' width='140' height='110' rx='14' fill='%23ff8aa0'/%3E%3Crect x='40' y='80' width='140' height='55' rx='14' fill='%23ffb3bf'/%3E%3Crect x='102' y='80' width='16' height='110' fill='%23e34d6d'/%3E%3Crect x='40' y='125' width='140' height='16' fill='%23e34d6d'/%3E%3Cpath d='M110 45 C80 35 70 60 95 75 C105 85 110 90 110 90 C110 90 115 85 125 75 C150 60 140 35 110 45Z' fill='%23ff5c7b'/%3E%3Cpath d='M110 45 C140 35 150 60 125 75' fill='none' stroke='%23d6405d' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M110 45 C80 35 70 60 95 75' fill='none' stroke='%23d6405d' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E"/>
+
+        <img class="gift" onclick="openPage('gift3')" alt="gift" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Crect width='220' height='220' fill='none'/%3E%3Crect x='40' y='80' width='140' height='110' rx='14' fill='%23ff8aa0'/%3E%3Crect x='40' y='80' width='140' height='55' rx='14' fill='%23ffb3bf'/%3E%3Crect x='102' y='80' width='16' height='110' fill='%23e34d6d'/%3E%3Crect x='40' y='125' width='140' height='16' fill='%23e34d6d'/%3E%3Cpath d='M110 45 C80 35 70 60 95 75 C105 85 110 90 110 90 C110 90 115 85 125 75 C150 60 140 35 110 45Z' fill='%23ff5c7b'/%3E%3Cpath d='M110 45 C140 35 150 60 125 75' fill='none' stroke='%23d6405d' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M110 45 C80 35 70 60 95 75' fill='none' stroke='%23d6405d' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E"/>
+      </div>
+    </div>
+
+
+    <!-- GIFT 1 (Flowers + Cupcake) -->
+    <div id="gift1" class="page">
+      <div class="giftContent">
+        <div class="giftRow">
+          <img alt="flowers" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='none'/%3E%3Ccircle cx='150' cy='120' r='55' fill='%23ffd45c'/%3E%3Ccircle cx='150' cy='120' r='22' fill='%236b4b2a'/%3E%3Ccircle cx='105' cy='105' r='35' fill='%23ffd45c'/%3E%3Ccircle cx='105' cy='105' r='14' fill='%236b4b2a'/%3E%3Ccircle cx='195' cy='105' r='35' fill='%23ffd45c'/%3E%3Ccircle cx='195' cy='105' r='14' fill='%236b4b2a'/%3E%3Cpath d='M90 210 Q150 240 210 210' stroke='%2390b77d' stroke-width='12' fill='none'/%3E%3Cpath d='M150 160 Q150 230 150 270' stroke='%2390b77d' stroke-width='10'/%3E%3Cpath d='M70 230 Q150 290 230 230' fill='%23f5efe8' stroke='%23d2c5b9' stroke-width='5'/%3E%3C/svg%3E"/>
+          
+          <img alt="cupcake" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect width='300' height='300' fill='none'/%3E%3Cpath d='M90 140 Q150 90 210 140 Q205 95 150 80 Q95 95 90 140' fill='%23f3d5c6'/%3E%3Cpath d='M100 150 Q150 210 200 150 L210 250 Q150 275 90 250 Z' fill='%23e7b8a1'/%3E%3Ccircle cx='150' cy='120' r='8' fill='%236b4b2a'/%3E%3Ccircle cx='130' cy='110' r='6' fill='%236b4b2a'/%3E%3Ccircle cx='170' cy='110' r='6' fill='%236b4b2a'/%3E%3C/svg%3E"/>
+        </div>
+
+        <div class="subtitle">Got This For You &lt;3</div>
+
+        <button class="btn" onclick="goHome()">Go Back</button>
+      </div>
+    </div>
+
+
+    <!-- GIFT 2 (Message Card) -->
+    <div id="gift2" class="page">
+      <div class="giftContent">
+        <div class="msgCard">
+          In your eyes, I have found a home where my soul finally feels at rest.
+          Every moment spent with you is a beautiful reminder that true happiness exists,
+          and I am so grateful to walk this path by your side.
+          <br><br>
+          You are the melody that my heart beats to and the light that guides me through every storm.
+          Thank you for loving me so completely and for making even the simplest days feel like a dream come true.
+          <br><br>
+          I love you more than words could ever express, now and for all the days to come.
+        </div>
+
+        <button class="btn" onclick="goHome()">Go Back</button>
+      </div>
+    </div>
+
+
+    <!-- GIFT 3 (Music Player) -->
+    <div id="gift3" class="page">
+      <div class="giftContent">
+
+        <div class="musicArea">
+          <!-- left bear -->
+          <img class="chibi" alt="bear" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Crect width='180' height='180' fill='none'/%3E%3Cellipse cx='90' cy='100' rx='55' ry='45' fill='%23fff' stroke='%23c9b7aa' stroke-width='3'/%3E%3Cellipse cx='65' cy='65' rx='16' ry='16' fill='%23fff' stroke='%23c9b7aa' stroke-width='3'/%3E%3Cellipse cx='115' cy='65' rx='16' ry='16' fill='%23fff' stroke='%23c9b7aa' stroke-width='3'/%3E%3Ccircle cx='78' cy='95' r='5' fill='%233c2a21'/%3E%3Ccircle cx='102' cy='95' r='5' fill='%233c2a21'/%3E%3Cpath d='M84 110 Q90 116 96 110' stroke='%233c2a21' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"/>
+
+          <!-- player -->
+          <div class="playerCard">
+            <div class="cover">
+              <img alt="cover" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='30%25'%3E%3Cstop offset='0%25' stop-color='%23203a66'/%3E%3Cstop offset='100%25' stop-color='%23081424'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23g)'/%3E%3Ccircle cx='130' cy='210' r='6' fill='%23ffffff55'/%3E%3Ccircle cx='180' cy='160' r='5' fill='%23ffffff55'/%3E%3Ccircle cx='230' cy='230' r='7' fill='%23ffffff55'/%3E%3Ccircle cx='270' cy='190' r='5' fill='%23ffffff55'/%3E%3C/svg%3E"/>
+            </div>
+
+            <div class="trackName">BIRDS OF A FEATHER</div>
+
+            <!-- IMPORTANT: put your mp3 in same folder -->
+            <audio id="song" controls>
+              <source src="birds-of-a-feather.mp3" type="audio/mpeg">
+              Your browser does not support audio.
+            </audio>
+          </div>
+
+          <!-- right bear -->
+          <img class="chibi" alt="bear" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Crect width='180' height='180' fill='none'/%3E%3Cellipse cx='90' cy='100' rx='55' ry='45' fill='%23c79b6c' stroke='%238a5a36' stroke-width='3'/%3E%3Cellipse cx='65' cy='65' rx='16' ry='16' fill='%23c79b6c' stroke='%238a5a36' stroke-width='3'/%3E%3Cellipse cx='115' cy='65' rx='16' ry='16' fill='%23c79b6c' stroke='%238a5a36' stroke-width='3'/%3E%3Ccircle cx='78' cy='95' r='5' fill='%233c2a21'/%3E%3Ccircle cx='102' cy='95' r='5' fill='%233c2a21'/%3E%3Cpath d='M84 110 Q90 116 96 110' stroke='%233c2a21' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cpath d='M120 85 Q145 95 135 120' stroke='%238a5a36' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"/>
+        </div>
+
+        <button class="btn" onclick="goHome()">Go Back</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function openPage(id){
+      document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+
+      // autoplay song ONLY when gift3 opens
+      if(id === "gift3"){
+        const song = document.getElementById("song");
+        if(song){
+          song.currentTime = 0;
+          song.play().catch(()=>{});
+        }
+      }
+    }
+
+    function goHome(){
+      document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+      document.getElementById("home").classList.add("active");
+
+      // stop music when leaving
+      const song = document.getElementById("song");
+      if(song){
+        song.pause();
+        song.currentTime = 0;
+      }
+    }
+  </script>
+
+</body>
+</html>
